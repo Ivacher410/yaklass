@@ -1,0 +1,162 @@
+@import url(reset.css);
+
+:root{
+    --bg-color: rgb(210, 164, 231);
+    --main-color: rgb(171, 132, 171);
+    --accent-color: rgb(244, 168, 81);
+
+
+    --font-text: Georgia, 'Times New Roman', serif;
+    --font-heading: 'Palatino Linotype', 'Book Antiqua', serif;
+    --font-math: 'Cambria Math', Constantia, serif;
+    --font-misc: Corbel, 'Lucida Console', sans-serif;
+    --font-button: Constantia, serif;
+
+    --leather: url(leather.jpg);
+    --paper: url(paper.jpg);
+    --wallpaper: url(pattern_c.jpg);
+}
+
+
+html{
+    background-color: var(--bg-color);
+    background-image: var(--wallpaper);
+    background-size: 250px;
+    background-repeat: repeat;
+    background-attachment: scroll;
+}
+
+body{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+
+    width: 50%;
+    margin-inline: auto;
+    background-color: var(--main-color);
+    font-family: var(--font-text);
+
+    h1, h2, h3, h4, h5, h6{
+        font-family: var(--font-heading);
+    }
+    h1{font-size: 2em;}
+    h2{font-size: 1.8em;}
+    h3{font-size: 1.6em;}
+    h4{font-size: 1.5em;}
+    h5{font-size: 1.3em;}
+    h6{font-size: 1.15em;}
+    
+}
+
+header{
+    --title-size: 36px;
+    --auth-size: 100px;
+    --rounding: 30px;
+
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    height: calc(var(--title-size) * 2.5);
+    border-radius: 0 0 var(--rounding) var(--rounding);
+    width: 98%;
+    color: white;
+    margin-block-end: 1em;
+
+
+    h1{
+        font-size: var(--title-size);
+        width: calc(100% - var(--auth-size));
+        display: inline-block;
+        text-align: center;
+        padding-inline-start: var(--auth-size);
+        text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.5);
+    }
+
+    .auth{
+        display: inline-flex;
+        width: var(--auth-size);
+        img{
+            width: 50%;
+        }
+        
+    }
+}
+
+main{
+    display: flex;
+    flex-flow: column nowrap;
+
+    padding-inline: 2cqi;
+    padding-block-end: 5cqb;
+    padding-block-start: 1cqb;
+}
+
+.leather{
+    --texture-color: magenta;
+    --border-color: gold;
+    --border-offset: 10px;
+    --shadow-size: 8px;
+    --shadow-color: #000000;
+
+    background-color: var(--texture-color);
+    background-image: linear-gradient(to bottom, #e6f8f149, #fefcf059 28%, transparent 68%, #4c425042), var(--leather);
+    background-size: 100%, 20% auto;
+    background-blend-mode: overlay, overlay;
+    background-repeat: repeat;
+    outline: var(--border-color) 1.6px dotted;
+    outline-offset: calc(var(--border-offset) * -1);
+    padding: calc(var(--border-offset) * 1.5);
+    box-shadow: 0 1px var(--shadow-size) 0 var(--shadow-color);
+}
+
+
+.paper{
+    --texture-color: magenta;
+    --border-color: gold;
+    --border-offset: 10px;
+    --shadow-size: 8px;
+    --shadow-color: #000000;
+
+    background-color: var(--texture-color);
+    background-image: var(--paper);
+    background-size: contain;
+    background-blend-mode: overlay;
+    background-repeat: repeat;
+    box-shadow: 0 1px var(--shadow-size) 0 var(--shadow-color);
+}
+
+.link-button{
+    --gradient-pos-a: 30%;
+    --gradient-pos-b: 70%;
+
+    --button-color: magenta;
+    --rounding: 20px;
+
+    display: inline-block;
+    background-color: var(--button-color);
+    background-image: linear-gradient(to bottom, rgba(245, 240, 229, 0.4), rgba(255, 250, 235, 0.55) var(--gradient-pos-a), transparent var(--gradient-pos-b), rgba(36, 28, 47, 0.5));
+    background-blend-mode: overlay;
+    color: color-mix(in oklab,
+        var(--button-color),
+        white 90%
+    );
+    font-family: var(--font-button);
+    font-variant: small-caps;
+    text-transform: uppercase;
+    font-size-adjust: cap-height;
+    line-height: 1em;
+    text-decoration: none;
+    padding-inline: 1em;
+    padding-block: 0.3em;
+    border-radius: var(--rounding);
+    box-shadow: 0 0 1px black;
+
+    &:hover{
+        --gradient-pos-a: 50%;
+        --gradient-pos-b: 90%;
+    }
+    &:active{
+        --gradient-pos-a: 10%;
+        --gradient-pos-b: 100%;
+    }
+}
