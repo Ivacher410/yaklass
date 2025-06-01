@@ -1,9 +1,10 @@
 @import url(reset.css);
 
 :root{
-    --bg-color: rgb(210, 164, 231);
+    --bg-color: rgb(67, 116, 83);
     --main-color: rgb(171, 132, 171);
     --accent-color: rgb(244, 168, 81);
+    --second-color: #5cbeb8;
 
 
     --font-text: Georgia, 'Times New Roman', serif;
@@ -24,20 +25,24 @@ html{
     background-size: 250px;
     background-repeat: repeat;
     background-attachment: scroll;
+    height: 100dvh;
 }
 
 body{
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
+    justify-content: space-between;
 
-    width: 50%;
+    width: 53%;
+    min-height: 100%;
     margin-inline: auto;
     background-color: var(--main-color);
     font-family: var(--font-text);
 
     h1, h2, h3, h4, h5, h6{
         font-family: var(--font-heading);
+        font-weight: bolder;
     }
     h1{font-size: 2em;}
     h2{font-size: 1.8em;}
@@ -48,9 +53,25 @@ body{
     
 }
 
+footer{
+    --title-size: 24px;
+    --auth-size: 150px;
+    --rounding: 0px;
+
+    
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    height: calc(var(--title-size) * 2.5);
+    border-radius: var(--rounding) var(--rounding) 0 0;
+    width: 96.5%;
+    color: white;
+    margin-block-start: 1em;
+}
+
 header{
     --title-size: 36px;
-    --auth-size: 100px;
+    --auth-size: 150px;
     --rounding: 30px;
 
     display: flex;
@@ -73,22 +94,87 @@ header{
     }
 
     .auth{
-        display: inline-flex;
         width: var(--auth-size);
-        img{
-            width: 50%;
-        }
+        height: 100%;
+
+        display: inline-flex;
+        flex-flow: column nowrap;
+        align-items: stretch;
+        justify-content: center;
+        gap: 0.5cqb;
+        max-width: var(--auth-size);
+        text-align: center;
         
+        a{
+            overflow: hidden;
+            text-overflow: ellipsis;
+
+            /*
+            &:last-child{
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+            }
+            &:first-child{
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+            */
+        }
     }
 }
 
 main{
     display: flex;
     flex-flow: column nowrap;
+    height: 100%;
+    justify-content: flex-start;
 
     padding-inline: 2cqi;
     padding-block-end: 5cqb;
     padding-block-start: 1cqb;
+
+    section{
+        --texture-color: magenta;
+        --border-color: color-mix(in oklab, var(--texture-color), rgba(0, 0, 0, 0.464) 10%);
+        --border-offset: 1.5cqb;
+
+        display: flex;
+        flex-flow: row nowrap;
+        margin-block: 1.5cqb;
+        background-color: var(--texture-color);
+        padding: calc(var(--border-offset) * 3);
+
+        outline: dashed var(--border-color) 3px;
+        outline-offset: calc(var(--border-offset) * -1);
+
+        figure{
+            padding-inline-end: 5%;
+            margin-block-start: -1%;
+
+            span:has(h1){
+                display: inline-flex;
+                flex-flow: row nowrap;
+                align-content: center;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+            }
+
+            figcaption{
+                padding-inline-end: 0px;
+                padding-block: 1em;
+                text-align: justify;
+            }
+
+            a{
+                text-decoration: none;
+            }
+        }
+
+        img{
+            max-width: 120px;
+        }
+    }
 }
 
 .leather{
@@ -131,6 +217,8 @@ main{
 
     --button-color: magenta;
     --rounding: 20px;
+    --shadow-smear: 8px;
+    --shadow-color: color-mix(in oklab, var(--button-color), rgba(0, 0, 0, 0.2) 75%);
 
     display: inline-block;
     background-color: var(--button-color);
@@ -145,11 +233,13 @@ main{
     text-transform: uppercase;
     font-size-adjust: cap-height;
     line-height: 1em;
+    max-height: 1em;
+    text-wrap: nowrap;
     text-decoration: none;
     padding-inline: 1em;
     padding-block: 0.3em;
     border-radius: var(--rounding);
-    box-shadow: 0 0 1px black;
+    box-shadow: 0 calc(var(--shadow-smear) / 2.5) var(--shadow-smear) var(--shadow-color);
 
     &:hover{
         --gradient-pos-a: 50%;
@@ -159,4 +249,8 @@ main{
         --gradient-pos-a: 10%;
         --gradient-pos-b: 100%;
     }
+}
+
+a{
+    color: var(--second-color);
 }
