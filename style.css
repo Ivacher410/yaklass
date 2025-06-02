@@ -34,7 +34,7 @@ body{
     align-items: center;
     justify-content: space-between;
 
-    width: 53%;
+    width: 55%;
     min-height: 100%;
     margin-inline: auto;
     background-color: var(--main-color);
@@ -96,6 +96,11 @@ header{
         text-align: center;
         padding-inline-start: var(--auth-size);
         text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.5);
+
+        a{
+            text-decoration: none;
+            color: inherit;
+        }
     }
 
     .auth{
@@ -152,10 +157,26 @@ main{
         outline: dashed var(--border-color) 3px;
         outline-offset: calc(var(--border-offset) * -1);
 
+        &:has(iframe[src*="youtube"]){
+            --frame-size: 300px;
+            flex-flow: row wrap;
+            align-items: center;
+            width: 40%;
+
+            height: calc(var(--frame-size) / 1.6);
+            iframe{
+                width: var(--frame-size);
+                height: calc(var(--frame-size) / 2);
+                margin-block: 1em;
+            }
+        }
+
+
         figure{
             padding-inline-end: 5%;
             margin-block-start: -1%;
             position: relative;
+            width: 100%;
 
             span:has(h1){
                 display: inline-flex;
@@ -177,9 +198,18 @@ main{
             }
         }
 
+        &>p{
+            padding-inline-end: 0px;
+            padding-block: 1em;
+            text-align: justify;
+        }
+
         img{
             max-width: 120px;
         }
+
+        
+
 
         &.restricted{
             position: relative;
@@ -287,4 +317,14 @@ main{
 
 a{
     color: var(--second-color);
+}
+
+.collage{
+    display: flex;
+    flex-flow: row wrap;
+    
+    align-content: flex-start;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 2px;
 }
