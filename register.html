@@ -18,14 +18,20 @@
         </div>
     </header>
     <main>
-        <div id="register">
+        <form id="register"  onsubmit="return register()">
             <h2>Регистрация</h2>
-            <input type="text" id="regLogin" placeholder="Логин">
-            <input type="password" id="regPassword" placeholder="Пароль">
-            <button onclick="register()">Зарегистрироваться</button>
-        </div>
+            <div>
+                <input type="text" id="nameSecond" placeholder="Фамилия">
+                <input type="text" id="nameFirst" placeholder="Имя">
+                <input type="text" id="namePatronim" placeholder="Очество">
+            </div>
+            <input type="text" id="namePatronim" placeholder="Почта">
+            <input type="text" id="regLogin" placeholder="Логин" required>
+            <input type="password" id="regPassword" placeholder="Пароль" required>
+            <button style="--button-color: var(--second-color);" class="link-button"" type="submit">Зарегистрироваться</button>
+        </form>
     </main>
-    <footer class="leather" style="--texture-color: #463228; --border-color: #b7bb8e ">
+    <footer class="leather" style="--texture-color: #463228; --border-color: #b7bb8e;">
         <small>
             Шкляев Никита Сергеевич
         </small>

@@ -60,7 +60,7 @@ footer{
 
     
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
     height: calc(var(--title-size) * 2.5);
@@ -137,6 +137,7 @@ main{
     display: flex;
     flex-flow: column nowrap;
     height: 100%;
+    width: 90%;
     justify-content: flex-start;
 
     padding-inline: 2cqi;
@@ -162,6 +163,7 @@ main{
             flex-flow: row wrap;
             align-items: center;
             width: 40%;
+            margin-block: var(--gap);
 
             height: calc(var(--frame-size) / 1.6);
             iframe{
@@ -219,18 +221,22 @@ main{
             }
 
             &::before{
+                --color-a: color-mix(in oklab, var(--accent-color), rgba(128, 128, 128, 0.5));
+                --color-b: color-mix(in oklab, var(--second-color), rgba(128, 128, 128, 0.5));
                 --padding-size-x: 100px;
+
+                background-image: linear-gradient(to bottom, var(--color-a), var(--color-b));
+
                 content: 'Этот контент доступен только зарегистрированным пользователям.';
                 position: absolute;
                 display: block;
                 width: calc(100% - var(--padding-size-x) * 2);
                 height: 100%;
-                background-color: color-mix(in oklab, var(--accent-color), rgba(128, 128, 128, 0.5));
                 text-align: center;
                 padding-inline: var(--padding-size-x);
                 align-content: center;
                 color: color-mix(in oklab, var(--accent-color), white 80%);
-                text-shadow: 1px 1px 6px black;
+                text-shadow: 1px 1px 8px black;
                 z-index: 10;
                 top: 0;
                 left: 0;
@@ -320,11 +326,62 @@ a{
 }
 
 .collage{
+    --gap: 2px;
     display: flex;
     flex-flow: row wrap;
     
     align-content: flex-start;
     justify-content: space-evenly;
     align-items: center;
-    gap: 2px;
+    gap: var(--gap);
+}
+
+form{
+    --radius: 20px;
+    --gap: 0.8em;
+
+    display: flex;
+    flex-flow: column wrap;
+    gap: var(--gap);
+
+    h2{
+        text-align: center;
+        width: 100%;
+    }
+
+    input{
+        text-align: center;
+
+        --color-a: color-mix(in oklab, var(--accent-color), rgba(255, 255, 255, 0.6));
+        --color-b: color-mix(in oklab, var(--accent-color), rgba(255, 255, 255, 0.4) 80%);
+        --color-c: color-mix(in oklab, var(--second-color), rgba(255, 255, 255, 0.6));
+        
+        background-image: linear-gradient(to bottom, var(--color-b), var(--color-a));
+        border: 1px solid var(--accent-color);
+
+        border-radius: var(--radius);
+
+        &:not(:placeholder-shown){
+            background-image: linear-gradient(to bottom, var(--color-b), var(--color-c));
+            border: 1px solid var(--second-color);
+        }
+        
+    }
+
+    &>div{
+        gap: var(--gap);
+    }
+
+    button{
+        height: 2em;
+        max-height: 2em !important;
+        border: none;
+    }
+}
+
+ol, ul{
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 1em;
+
 }

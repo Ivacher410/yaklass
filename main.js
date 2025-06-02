@@ -21,33 +21,35 @@ function saveAllAccounts(accounts) {
   setCookie('demo_accounts', JSON.stringify(accounts), 30);
 }
 
-// Модифицированная регистрация
 function register() {
-  const login = document.getElementById('regLogin').value;
-  const password = document.getElementById('regPassword').value;
-  
-  if (!login || !password) {
-    alert('Заполните все поля!');
-    return;
+    const login = document.getElementById('regLogin').value;
+    const password = document.getElementById('regPassword').value;
+    
+    if (!login || !password) {
+      alert('Заполните обязательные поля!');
+      return false; // Предотвращаем отправку формы
+    }
+    
+    const accounts = getAllAccounts();
+    
+    if (accounts[login]) {
+      alert('Этот логин уже занят!');
+      return false;
+    }
+    
+    // Добавляем новый аккаунт
+    accounts[login] = password;
+    saveAllAccounts(accounts);
+    
+    // Автоматический вход
+    setCookie('current_user', login);
+    setCookie('auth', '1');
+    
+    //alert('Регистрация успешна!');
+    window.location.href = "index.html";
+    
+    return false; // Важно: предотвращаем стандартную отправку формы
   }
-  
-  const accounts = getAllAccounts();
-  
-  if (accounts[login]) {
-    alert('Этот логин уже занят!');
-    return;
-  }
-  
-  // Добавляем новый аккаунт
-  accounts[login] = password;
-  saveAllAccounts(accounts);
-  
-  // Автоматический вход после регистрации
-  setCookie('current_user', login);
-  setCookie('auth', '1');
-  alert('Регистрация успешна!');
-  window.location.href = "index.html";
-}
 
 // Модифицированный вход
 function login() {
@@ -58,11 +60,14 @@ function login() {
   if (accounts[login] === password) {
     setCookie('current_user', login);
     setCookie('auth', '1');
-    alert('Вход выполнен!');
+    //alert('Вход выполнен!');
     window.location.href = "index.html";
   } else {
     alert('Неверный логин или пароль');
+    return false;
   }
+
+  return false
 }
 
 // Выход (оставляем ваш)

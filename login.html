@@ -18,13 +18,13 @@
         </div>
     </header>
     <main>
-        <div id="login">
+        
+        <form id="login"  onsubmit="return login()">
             <h2>Вход</h2>
-            <input type="text" id="logLogin" placeholder="Логин">
-            <input type="password" id="logPassword" placeholder="Пароль">
-            <button onclick="login()">Войти</button>
-        </div>
-
+            <input type="text" id="logLogin" placeholder="Логин" required>
+            <input required type="password" id="logPassword" placeholder="Пароль">
+            <button style="--button-color: var(--second-color);" class="link-button"" type="submit">Войти</button>
+        </form>
     </main>
     <footer class="leather" style="--texture-color: #463228; --border-color: #b7bb8e ">
         <small>
