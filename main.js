@@ -1,4 +1,4 @@
-// Функции для работы с Cookies (оставляем ваши)
+// Куки для сохранение аккаунтов, потому что я бедный студент, я не буду платить за хостинг для бэкенда 
 function setCookie(name, value, days = 1) {
   const d = new Date();
   d.setTime(d.getTime() + (days*24*60*60*1000));
@@ -11,7 +11,7 @@ function getCookie(name) {
   if (parts.length === 2) return parts.pop().split(';').shift();
 }
 
-// Новые функции для работы с аккаунтами
+// Функции для работы с аккаунтами
 function getAllAccounts() {
   const accountsCookie = getCookie('demo_accounts');
   return accountsCookie ? JSON.parse(accountsCookie) : {};
@@ -27,7 +27,7 @@ function register() {
     
     if (!login || !password) {
       alert('Заполните обязательные поля!');
-      return false; // Предотвращаем отправку формы
+      return false;
     }
     
     const accounts = getAllAccounts();
@@ -37,7 +37,7 @@ function register() {
       return false;
     }
     
-    // Добавляем новый аккаунт
+    // Добавление нового аккаунта
     accounts[login] = password;
     saveAllAccounts(accounts);
     
@@ -48,10 +48,10 @@ function register() {
     //alert('Регистрация успешна!');
     window.location.href = "index.html";
     
-    return false; // Важно: предотвращаем стандартную отправку формы
+    return false; 
   }
 
-// Модифицированный вход
+// Вход в учётку 
 function login() {
   const login = document.getElementById('logLogin').value;
   const password = document.getElementById('logPassword').value;
@@ -70,7 +70,7 @@ function login() {
   return false
 }
 
-// Выход (оставляем ваш)
+// Выход из учётки
 function logout() {
   setCookie('auth', '0');
   setCookie('current_user', '', -1); // Удаляем куку
@@ -113,12 +113,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  ////
+  
   const restrictedElements = document.getElementsByClassName('restricted');
   for (let elem of restrictedElements){
         const allChildren = elem.querySelectorAll('*');
     
-        // Set tabindex="-1" for each child
+        
         allChildren.forEach(child => {
             child.setAttribute('tabindex', '-1');
         });
